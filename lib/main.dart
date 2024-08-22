@@ -131,6 +131,10 @@ class Home extends StatelessWidget {
                 Text('Column 3'),
                 Text('Column 3'),
                 Text('Column 3'),
+                ElevatedButton(
+                  style:ElevatedButton.styleFrom(backgroundColor: Colors.red) ,
+                    onPressed: (){},
+                    child: Text('press Me'))
               ],
             ),
           ],
