@@ -1,145 +1,117 @@
-
-// Current SDK version: 3.22.1
 import 'package:flutter/material.dart';
 
-// Column, Row, SingleChildScrollView
-
 void main() {
-  runApp(IntroApp());
+  runApp(MyApp());
 }
 
-class IntroApp extends StatelessWidget {
-  const IntroApp({super.key});
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: true,
-      home: Home(),
-      title: 'Intro app',
+      debugShowCheckedModeBanner: false,
+      home: HomeActivity(),
     );
   }
 }
 
-class Home extends StatelessWidget {
-  const Home({super.key});
-
-  // single child, multiple child(children)
+class HomeActivity extends StatelessWidget {
+  const HomeActivity({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.green,
       appBar: AppBar(
-        title: Text('Home'),
-        backgroundColor: Colors.blue,
-      ),
-      /* body: Column(
-        // Vertically arrange
-        // mainAxisAlignment: ,
-        // crossAxisAlignment: ,
-        mainAxisSize: MainAxisSize.max,
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        crossAxisAlignment: CrossAxisAlignment.end,
-        children: [
-          Text('Hello world'),
-          Text('sdfdf'),
-          Text('sdf'),
-          ElevatedButton(
-            onPressed: () {},
-            child: Text('Click here'),
-          ),
-          IconButton(onPressed: () {}, icon: Icon(Icons.access_alarms))
+        title: Text('Inventory App'),
+        backgroundColor: Colors.greenAccent,
+        titleSpacing: 10,
+        //text space
+        // centerTitle: true, //title center
+        toolbarHeight: 60,
+        //Appbar height
+        toolbarOpacity: 1,
+        //color garo kora text hide kora
+        titleTextStyle: TextStyle(
+            color: Colors.red,
+            fontSize: 25.0,
+            fontStyle: FontStyle.italic,
+            fontWeight: FontWeight.bold),
+        actions: [
+          IconButton(
+              onPressed: () {
+                final snackbar = SnackBar(content: Text('I ame comment!'));
+                ScaffoldMessenger.of(context).showSnackBar(snackbar);
+                ;
+              },
+              icon: Icon(Icons.comment)),
+          IconButton(
+              onPressed: () {
+                final snackbar = SnackBar(content: Text('I ame search!'));
+                ScaffoldMessenger.of(context).showSnackBar(snackbar);
+                ;
+              },
+              icon: Icon(Icons.search)),
+          IconButton(
+              onPressed: () {
+                final snackbar = SnackBar(content: Text('I ame setting!'));
+                ScaffoldMessenger.of(context).showSnackBar(snackbar);
+                ;
+              },
+              icon: Icon(Icons.settings)),
+          IconButton(
+              onPressed: () {
+                final snackbar = SnackBar(content: Text('I ame email!'));
+                ScaffoldMessenger.of(context).showSnackBar(snackbar);
+                ;
+              },
+              icon: Icon(
+                Icons.email,
+                color: Colors.white,
+              )),
+          IconButton(
+              onPressed: () {
+                final snackbar = SnackBar(content: Text('I ame favorite!'));
+                ScaffoldMessenger.of(context).showSnackBar(snackbar);
+                ;
+              },
+              icon: Icon(
+                Icons.favorite,
+                color: Colors.red,
+              ))
         ],
-      ),*/
-      /*     body: SingleChildScrollView(
-        scrollDirection: Axis.horizontal,
-        child: Row(
-          // Horizontally
-          mainAxisAlignment: MainAxisAlignment.end,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisSize: MainAxisSize.max,
-          children: [
-            Text('Hello world\nfrom ostad'),
-            Text('Hello world'),
-            Text('Hello world'),
-            Text('Hello world'),
-            Text('Hello world'),
-            Text('Hello world'),
-            Text('Hello world'),
-            Text('Hello world'),
-            Text('Hello world'),
-            Text('Hello world'),
-            Text('Hello world'),
-            Text('Hello world'),
-            Text('Hello world'),
-            Text('Hello world'),
-            Text('Hello world'),
-            Text('Hello world'),
-            Text('Hello world'),
-            Text('Hello world'),
-            Text('Hello world'),
-            Text('Hello world'),
-            Text('Hello world'),
-          ],
-        ),
-      ),*/
-      body: SingleChildScrollView(
-        scrollDirection: Axis.horizontal,
-        child: Row(
-          children: [
-            Column(
-              children: [
-                Text('Column 1'),
-                Text('Column 1'),
-                Text('Column 1'),
-                Text('Column 1'),
-                Text('Column 1'),
-                Text('Column 1'),
-                Text('Column 1'),
-              ],
-            ),
-            Column(
-              children: [
-                Text('Column 2'),
-                Text('Column 2'),
-                Text('Column 2'),
-                Text('Column 2'),
-                Text('Column 2'),
-                Text('Column 2'),
-                Text('Column 2'),
-                Text('Column 2'),
-                Text('Column 2'),
-                Text('Column 2'),
-                Text('Column 2'),
-                Text('Column 2'),
-                Text('Column 2'),
-                Row(
-                  children: [
-                    Text('Row 1 from col 2'),
-                    Text('Row 1 from col 2'),
-                    Text('Row 1 from col 2'),
-                    Text('Row 1 from col 2'),
-                    Text('Row 1 from col 2'),
-                  ],
-                )
-              ],
-            ),
-            Column(
-              children: [
-                Text('Column 3'),
-                Text('Column 3'),
-                Text('Column 3'),
-                Text('Column 3'),
-                ElevatedButton(
-                  style:ElevatedButton.styleFrom(backgroundColor: Colors.red) ,
-                    onPressed: (){},
-                    child: Text('press Me'))
-              ],
-            ),
-          ],
-        ),
       ),
+      body: Center( 
+        child: Column(
+          children:[ ElevatedButton(
+            onPressed: () {
+              final snackBar = SnackBar(
+                content: Row(
+                  children: [
+                    Icon(Icons.info, color: Colors.white), // Add your icon here
+                    SizedBox(width: 10), // Space between icon and text
+                    Text('This is a Snackbar with an icon!'),
+                  ],
+                ),
+                action: SnackBarAction(
+                  label: 'Undo',
+                  onPressed: () {
+                    // Code to undo the change.
+                  },
+                ),
+              );
+          
+              // Show the Snackbar
+              ScaffoldMessenger.of(context).showSnackBar(snackBar);
+            },
+            child: Text('Show Snackbar with Icon'),
+          ),
+            
+      ],
+        ),
+
+      ),
+
     );
   }
 }
