@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -11,107 +12,117 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: HomeActivity(),
+      home: HomeScreen(),
     );
   }
 }
 
-class HomeActivity extends StatelessWidget {
-  const HomeActivity({super.key});
+// class Home extends StatelessWidget {
+//   const Home({super.key});
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       appBar: AppBar(
+//         title: Text(''),
+//         backgroundColor: Colors.cyan,
+//       ),
+//     );
+//   }
+// }
+class HomeScreen extends StatefulWidget {
+  const HomeScreen({super.key});
+
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  int counter = 0;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text('Inventory App'),
-        backgroundColor: Colors.greenAccent,
-        titleSpacing: 10,
-        //text space
-        // centerTitle: true, //title center
-        toolbarHeight: 60,
-        //Appbar height
-        toolbarOpacity: 1,
-        //color garo kora text hide kora
         titleTextStyle: TextStyle(
             color: Colors.red,
-            fontSize: 25.0,
             fontStyle: FontStyle.italic,
-            fontWeight: FontWeight.bold),
+            fontWeight: FontWeight.bold,
+            fontSize: 20),
+        backgroundColor: Colors.greenAccent,
         actions: [
           IconButton(
-              onPressed: () {
-                final snackbar = SnackBar(content: Text('I ame comment!'));
-                ScaffoldMessenger.of(context).showSnackBar(snackbar);
-                ;
-              },
-              icon: Icon(Icons.comment)),
+              onPressed: () {}, icon: Icon(Icons.mail, color: Colors.white)),
           IconButton(
-              onPressed: () {
-                final snackbar = SnackBar(content: Text('I ame search!'));
-                ScaffoldMessenger.of(context).showSnackBar(snackbar);
-                ;
-              },
-              icon: Icon(Icons.search)),
+              onPressed: () {}, icon: Icon(Icons.message, color: Colors.white)),
           IconButton(
-              onPressed: () {
-                final snackbar = SnackBar(content: Text('I ame setting!'));
-                ScaffoldMessenger.of(context).showSnackBar(snackbar);
-                ;
-              },
-              icon: Icon(Icons.settings)),
+              onPressed: () {}, icon: Icon(Icons.search, color: Colors.white)),
           IconButton(
-              onPressed: () {
-                final snackbar = SnackBar(content: Text('I ame email!'));
-                ScaffoldMessenger.of(context).showSnackBar(snackbar);
-                ;
-              },
-              icon: Icon(
-                Icons.email,
-                color: Colors.white,
-              )),
+              onPressed: () {},
+              icon: Icon(Icons.settings, color: Colors.white)),
           IconButton(
-              onPressed: () {
-                final snackbar = SnackBar(content: Text('I ame favorite!'));
-                ScaffoldMessenger.of(context).showSnackBar(snackbar);
-                ;
-              },
-              icon: Icon(
-                Icons.favorite,
-                color: Colors.red,
-              ))
+              onPressed: () {}, icon: Icon(Icons.favorite, color: Colors.red))
         ],
       ),
-      body: Center( 
+      body: Center(
         child: Column(
-          children:[ ElevatedButton(
-            onPressed: () {
-              final snackBar = SnackBar(
-                content: Row(
-                  children: [
-                    Icon(Icons.info, color: Colors.white), // Add your icon here
-                    SizedBox(width: 10), // Space between icon and text
-                    Text('This is a Snackbar with an icon!'),
-                  ],
-                ),
-                action: SnackBarAction(
-                  label: 'Undo',
-                  onPressed: () {
-                    // Code to undo the change.
-                  },
-                ),
-              );
-          
-              // Show the Snackbar
-              ScaffoldMessenger.of(context).showSnackBar(snackBar);
-            },
-            child: Text('Show Snackbar with Icon'),
-          ),
-            
-      ],
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            ElevatedButton(
+              style:
+              ElevatedButton.styleFrom(backgroundColor: Colors.greenAccent),
+              onPressed: () {
+                final snackBar = SnackBar(
+                    content: Row(
+                      children: [
+                        Icon(
+                          Icons.info,
+                          color: Colors.white,
+                        ),
+                        SizedBox(
+                          width: 16,
+                        ),
+                        Text('This is a Snackbar with an icon!'),
+                      ],
+                    ));
+                ScaffoldMessenger.of(context).showSnackBar(snackBar);
+              },
+              child: Text('Show Snackbar with Icon'),
+            ),
+            Text(
+              'Counter :$counter',
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+            )
+          ],
         ),
-
       ),
-
+      floatingActionButton: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          FloatingActionButton(
+            // backgroundColor: Colors.red,
+            onPressed: () {
+              counter += 2;
+              print(counter);
+              setState(() {});
+            },
+            child: Icon(Icons.add),
+          ),
+          SizedBox(
+            width: 24,
+          ),
+          FloatingActionButton(
+            // backgroundColor: Colors.red,
+            onPressed: () {
+              counter -= 2;
+              print(counter);
+              setState(() {});
+            },
+            child: Icon(Icons.remove),
+          ),
+        ],
+      ),
     );
   }
 }
